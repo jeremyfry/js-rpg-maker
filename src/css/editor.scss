@@ -1,0 +1,15 @@
+@import 'reset';
+$blue: #00cc00;
+body{
+	overflow: hidden;
+	canvas{
+		position: absolute;
+		top: 0;
+		left: 0;
+		border: 1px solid black;
+		a{
+			color: $blue;
+			overflow: visible;
+		}
+	}
+}
