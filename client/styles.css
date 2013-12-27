@@ -35,13 +35,18 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-body {
+body.editor {
   overflow: hidden; }
-  body canvas {
+  body.editor #tabs ul {
+    height: 20px;
+    width: 100%; }
+    body.editor #tabs ul li {
+      background-color: #444444;
+      padding: 2px 5px;
+      margin: 0 5px;
+      float: left; }
+  body.editor canvas {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 0;
     border: 1px solid black; }
-    body canvas a {
-      color: #00cc00;
-      overflow: visible; }

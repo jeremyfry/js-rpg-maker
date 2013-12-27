@@ -52,7 +52,12 @@ function LevelTab(element){
 		this.isActiveTab = true;
 		this.bindEvents();
 		this.calculateVisibleRange();
-		setInterval(function(){ level.draw(); }, 33);
+		setInterval(function(){ 
+			//TODO: Change this to prevent the interval. Setter for isActive would help
+			if(this.isActiveTab){
+				level.draw(); 	
+			}
+		}.bind(this), 33);
 	};
 
 	this.bindEvents = function(){

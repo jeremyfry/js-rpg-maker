@@ -1,15 +1,23 @@
 @import 'reset';
-$blue: #00cc00;
-body{
+body.editor{
 	overflow: hidden;
+	#tabs{
+		ul{
+			height: 20px;
+			width: 100%;
+			li{
+				background-color: #444;
+				padding: 2px 5px;
+				margin: 0 5px;
+				float: left;
+			}
+		}
+	}
+
 	canvas{
 		position: absolute;
-		top: 0;
+		top: 20px;
 		left: 0;
 		border: 1px solid black;
-		a{
-			color: $blue;
-			overflow: visible;
-		}
 	}
 }

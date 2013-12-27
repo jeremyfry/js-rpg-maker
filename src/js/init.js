@@ -15,7 +15,7 @@ function Editor(){
 	this.bindEvents = function(){
 		$('#add-tab').on('click', function(){
 			// Add a tab and a level.
-			var $ul = $(this).parent();
+			var $ul = $('#tabs ul');
 			var $tabLi = $('<li>').appendTo($ul).html('New Level').attr('level-index', $ul.children().length);
 			var $levelLi = $('<li>').appendTo('#levels ul').attr('level-index', $ul.children().length);
 			var level = new LevelTab($levelLi);
@@ -25,6 +25,10 @@ function Editor(){
 				sizeY: 800,
 				gridSize: 32
 			});
+			this.tabs.forEach(function(tab){
+				tab.level.isActiveTab = false;
+				tab.elements.level.hide();
+			});
 			this.tabs.push({
 				elements: {
 					tab: $tabLi,
@@ -32,7 +36,7 @@ function Editor(){
 				},
 				level: level
 			});
-		});
+		}.bind(this));
 	};
 
 	// Initialize a basic level

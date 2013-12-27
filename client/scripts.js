@@ -58,7 +58,7 @@ function GridSquare(canvasContext, gridSize, col, row){
 	this.bindEvents = function(){
 		$('#add-tab').on('click', function(){
 			// Add a tab and a level.
-			var $ul = $(this).parent();
+			var $ul = $('#tabs ul');
 			var $tabLi = $('<li>').appendTo($ul).html('New Level').attr('level-index', $ul.children().length);
 			var $levelLi = $('<li>').appendTo('#levels ul').attr('level-index', $ul.children().length);
 			var level = new LevelTab($levelLi);
@@ -68,6 +68,10 @@ function GridSquare(canvasContext, gridSize, col, row){
 				sizeY: 800,
 				gridSize: 32
 			});
+			this.tabs.forEach(function(tab){
+				tab.level.isActiveTab = false;
+				tab.elements.level.hide();
+			});
 			this.tabs.push({
 				elements: {
 					tab: $tabLi,
@@ -75,7 +79,7 @@ function GridSquare(canvasContext, gridSize, col, row){
 				},
 				level: level
 			});
-		});
+		}.bind(this));
 	};
 
 	// Initialize a basic level
@@ -137,7 +141,12 @@ function LevelTab(element){
 		this.isActiveTab = true;
 		this.bindEvents();
 		this.calculateVisibleRange();
-		setInterval(function(){ level.draw(); }, 33);
+		setInterval(function(){ 
+			//TODO: Change this to prevent the interval. Setter for isActive would help
+			if(this.isActiveTab){
+				level.draw(); 	
+			}
+		}.bind(this), 33);
 	};
 
 	this.bindEvents = function(){
